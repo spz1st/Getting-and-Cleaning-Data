@@ -2,9 +2,14 @@
 # library(dplyr)
 # library(tidyr)
 
-# X_test.txt  contains the measurements
-# y_test.txt  contains activities code (1 to 6) in active_labels.txt
+# when the zip file is unziped in the working directory
+# the data files are unpacked in the subdirectory named "UCI HAR Dataset"
+# this script must be run in the directory that contains the subdirectory
+# "UCI HAR Dataset"
+
 # subject_test.txt contains subject id (1 to 30)
+# y_test.txt contains activities code (1 to 6) in active_labels.txt
+# X_test.txt contains the measurements, 561 variables (columns)
 
 # read in train data
 
@@ -12,9 +17,9 @@
 
 ### read in training dataset
 
-train_subjs = read.table("train/subject_train.txt")# subjects within 1 to 30
-train_lbls = read.table("train/y_train.txt") # activity code within 1 to 6
-train_meas = read.table("train/X_train.txt", as.is=T) # measurements, 561 variables
+train_subjs = read.table("UCI HAR Dataset/train/subject_train.txt")
+train_lbls = read.table("UCI HAR Dataset/train/y_train.txt")
+train_meas = read.table("UCI HAR Dataset/train/X_train.txt", as.is=T)
 
 # combine the data into a single data.frame
 # columns in order of "subject", "activity", "measure1", "measure2", ...
@@ -29,9 +34,9 @@ rm(train_lbls)
 
 ### read in test data (follow the same steps as for training dataset)
 
-test_subjs = read.table("test/subject_test.txt") # subjects within 1 to 30
-test_lbls = read.table("test/y_test.txt")  # activity code within 1 to 6
-test_meas = read.table("test/X_test.txt", as.is=T)  # measurements, 561 variables
+test_subjs = read.table("UCI HAR Dataset/test/subject_test.txt")
+test_lbls = read.table("UCI HAR Dataset/test/y_test.txt")
+test_meas = read.table("UCI HAR Dataset/test/X_test.txt", as.is=T)
 
 # combine the data into a data.frame
 # columns in order of "subject", "activity", "measure1", "measure2", ...
@@ -59,7 +64,7 @@ rm(test_data)
 
 ### read in describle variable names for 561 measurements
 
-features = read.table("features.txt")
+features = read.table("UCI HAR Dataset/features.txt")
 
 # > names(features)
 # [1] "V1" "V2"
@@ -109,7 +114,7 @@ rm(merged_data)
 ###### step 3. name activity (column 2) with descriptive names
 
 ### read in the active names
-activities = read.table("activity_labels.txt")
+activities = read.table("UCI HAR Dataset/activity_labels.txt")
 # >activities
 #   V1                 V2
 # 1  1            WALKING
