@@ -1,3 +1,4 @@
+# try to process the data without using dplyr and tidyr
 # library(dplyr)
 # library(tidyr)
 
@@ -97,6 +98,9 @@ subsets_data = merged_data[, feature_cols]
 
 # > dim(subsets_data)
 # [1] 10299    68
+# > sum(!complete.cases(subsets_data))
+# [1] 0
+# no NAs in the data set
 
 # clean up tables not used any more
 
@@ -160,17 +164,6 @@ names(subsets_data) =  feature_names
 
 cols = ncol(subsets_data)
 
-get_average = function(subj, activity) {
-  # this is a function used here only, so we skip the check of
-  # the validity of the parameters
-
-  # extract the values for each measurement (column) for the subject and
-  # activity and calculate the values, then return the averages in a vector
-
-  sapply(subsets_data[subsets_data[1]==subj & subsets_data[2]==activity, c(3:cols)], mean)
-
-}
-
 means = data.frame()  # for the averages
 subjs = integer(0)    # subjects
 acts = character(0)   # activities
@@ -179,7 +172,9 @@ for(subj in 1:30) { # go through each subject
   for(activity in activities[,2]) {  # go through each activity
     subjs = c(subjs, subj)
     acts = c(acts, activity)
-    avgs = sapply(subsets_data[subsets_data[1]==subj & subsets_data[2]==activity, c(3:cols)], mean)
+
+    # get the means of the duplicates for each variable (column)
+    avgs = colMeans(subsets_data[subsets_data[1]==subj & subsets_data[2]==activity, c(3:cols)])
     means = rbind(means, avgs)
   }
 }
@@ -195,6 +190,13 @@ tidy_data = cbind(tidy_data, means)
 
 names(tidy_data) =  feature_names # properly name the variables
 
+# for the tidy data set, the variable names for averages could be changed
+# a little bit to reflect the average nature by doing the follow, for example
+# names(tidy_data) = paste(names(tidy_data), "avg", sep="-")
+# so tBodyAcc-mean-X would be changed to tBodyAcc-mean-X-avg
+
+### write the tidy data set into a file
+
 write.table(tidy_data, file = "tidy_data.txt", row.name = FALSE)
 
 # clean up tables not used any more
@@ -203,7 +205,5 @@ rm(avgs)
 rm(subjs)
 rm(acts)
 rm(means)
-# rm(tidy_data)
-
-# tidyup()
+rm(tidy_data)
 
