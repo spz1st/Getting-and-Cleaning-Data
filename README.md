@@ -1,11 +1,17 @@
 # Getting and Cleaning Data Course Project
 
-This file describes the R codes in the R script file <b>run\_analysis.R</b>
-that, when executed, will process the data in the file available
-at the following link and create a tidy data set.
-Please note that no external packages (such as dplyr)
-are used in the script though some codes might be simplied
-to some degree if some packages were used.
+## Goal of the Project
+
+The goal of this project is to create a tidy data,
+that can be used for later analysis,
+from a set of data files to demonstrate the ability
+to collect, work with, and clean a data set.
+
+## Data Source
+
+The data used for this project were collected from the accelerometers from
+the Samsung Galaxy S smartphone in experiments on wearable computing.
+The data file is availabe at the following link.
 
 <a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a>
 
@@ -13,6 +19,15 @@ A full description of the above data is available at the following site and
 resources referred there: 
 
 <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a>
+
+## Data Process Procedures
+
+This file describes the R codes in the R script file <b>run\_analysis.R</b>
+that, when executed, will process the data in the file from the above link
+and create a tidy data set.
+Please note that no external packages (such as dplyr)
+are used in the script though some codes might be simplied
+to some degree if some packages were used.
 
 When you download and unzip the above data file,
 a subdirectory named <b>UCI HAR Dataset</b> will be created
@@ -24,9 +39,15 @@ It is assumed that your R working directory contains the
 (<b>source("run\_analysis.R"</b>)
 and the tidy data set will be written in a file named <b>tidy\_data.txt</b>
 in this working directory. 
-A copy of the file has been loaded into this repo.
 
-## 1. Merge the training and test data sets
+In this repo, you will find four files:
+* README.md: this file.
+* run_analysis.R: the R script for processing the data sets
+  and producing the tidy data set.
+* tidy_data.txt: the tidy data set produced by the R script.
+* CodeBook: document describing the tidy data set in tidy_data.txt.
+
+### 1. Merge the training and test data sets
 
 The training data are in the <b>train</b> subdirectory
 and the test data in the <b>test</b>
@@ -73,7 +94,7 @@ Now we have a merged data set.
 Plese note that you may see some codes to remove some objects with <b>rm()</b>
 when they are no longer needed.
 
-## 2. Extract means and standard deviations
+### 2. Extract means and standard deviations
 
 The file <b>features.txt</b> contains names that specify the type of data
 or signals for the corresponding columns in the X file (see 1. above).
@@ -109,7 +130,7 @@ subject and activity columns into a new data frame named <b>subsets\_data</b>.
 Please note that <b>feature\_name</b> now has the descriptive names
 for the corresponding variables (or columns) in <b>subsets\_data</b>.
 
-## 3. Replace activity codes (levels in column 2) with descriptive names
+### 3. Replace activity codes (levels in column 2) with descriptive names
 
 The file <b>activity\_labels.txt</b> contains the description
 for the activity codes, so first the descriptions are read in from the file.
@@ -126,7 +147,7 @@ replace the activity codes with their corresponding descriptive names.
 
 For the subject column (column 1), the subject ID numbers are kept.
 
-## 4. Label variables (columns) with descriptive names
+### 4. Label variables (columns) with descriptive names
 
 As noted above, the corresponding descriptive names for the variables
 (or columns) in the subset data frame are in the vector <b>feature\_names</b>.
@@ -135,7 +156,7 @@ the values of the vector to give descriptive names to the variables:
 
 >`names(subsets_data) = feature_names`
 
-## 5. Create a tidy data set with the average of each variable for each activity of each subject from the table <b>subsets\_data</b>
+### 5. Create a tidy data set with the average of each variable for each activity of each subject from the table <b>subsets\_data</b>
 
 What needed here is to replace the duplicated measurements of each variable
 for each activity of each subject from the table <b>subsets\_data</b>
