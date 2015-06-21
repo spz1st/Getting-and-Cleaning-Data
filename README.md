@@ -15,12 +15,12 @@ resources referred there:
 <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a>
 
 When you download and unzip the above data file,
-a new directory named <b>UCI HAR Dataset</b> will be created
-in the current directory and all the data files needed are put under
+a subdirectory named <b>UCI HAR Dataset</b> will be created
+in the current directory and all the data files needed are under
 the <b>UCI HAR Dataset</b>
-directory and its subdirectories <b>train</b> and <b>test</b>.
-It is assumed that your R working directory is
-<b>&lt;path\_from\_root&gt;/UCI HAR Dataset</b> when you run the R script
+subdirectory and its subdirectories <b>train</b> and <b>test</b>.
+It is assumed that your R working directory contains the
+<b>UCI HAR Dataset</b> subdirectory when you run the R script
 (<b>source("run\_analysis.R"</b>)
 and the tidy data set will be written in a file named <b>tidy\_data.txt</b>
 in this working directory. 
