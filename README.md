@@ -199,3 +199,20 @@ the descriptive names and the tidy data set is written into a file with
 The data set is in the wide form and can be read into R with the command
 <b>read.table("tidy_data.txt", header=TRUE)</b>.
 
+    > tidy_data = read.table("tidy_data.txt", header=T)
+    > dim(tidy_data)
+    [1] 180  68
+    > head(tidy_data[, 1:8], 12)
+       subject           activity tBodyAcc.mean.X tBodyAcc.mean.Y tBodyAcc.mean.Z tBodyAcc.std.X tBodyAcc.std.Y tBodyAcc.std.Z
+    1        1            walking       0.2773308    -0.017383819      -0.1111481    -0.28374026    0.114461337    -0.26002790
+    2        1   walking_upstairs       0.2554617    -0.023953149      -0.0973020    -0.35470803   -0.002320265    -0.01947924
+    3        1 walking_downstairs       0.2891883    -0.009918505      -0.1075662     0.03003534   -0.031935943    -0.23043421
+    4        1            sitting       0.2612376    -0.001308288      -0.1045442    -0.97722901   -0.922618642    -0.93958629
+    5        1           standing       0.2789176    -0.016137590      -0.1106018    -0.99575990   -0.973190056    -0.97977588
+    6        1             laying       0.2215982    -0.040513953      -0.1132036    -0.92805647   -0.836827406    -0.82606140
+    7        2            walking       0.2764266    -0.018594920      -0.1055004    -0.42364284   -0.078091253    -0.42525752
+    8        2   walking_upstairs       0.2471648    -0.021412113      -0.1525139    -0.30437641    0.108027280    -0.11212102
+    9        2 walking_downstairs       0.2776153    -0.022661416      -0.1168129     0.04636668    0.262881789    -0.10283791
+    10       2            sitting       0.2770874    -0.015687994      -0.1092183    -0.98682228   -0.950704499    -0.95982817
+    11       2           standing       0.2779115    -0.018420827      -0.1059085    -0.98727189   -0.957304989    -0.94974185
+    12       2             laying       0.2813734    -0.018158740      -0.1072456    -0.97405946   -0.980277399    -0.98423330
